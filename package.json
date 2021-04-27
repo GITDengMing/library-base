@@ -1,0 +1,37 @@
+{
+  "name": "form-system",
+  "version": "1.0.0",
+  "description": "form system",
+  "main": "lib/form-system.js",
+  "unpkg": "dist/form-system.js",
+  "module": "es/form-system.js",
+  "scripts": {
+    "build": "rollup --config",
+    "lint": "eslint src test --fix",
+    "test": "jest"
+  },
+  "keywords": [
+    "form",
+    "system"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.13.16",
+    "@babel/plugin-transform-modules-commonjs": "^7.13.8",
+    "@babel/plugin-transform-runtime": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "@rollup/plugin-babel": "^5.3.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.24.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "jest": "^26.6.3",
+    "rollup": "^2.45.2",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {}
+}
