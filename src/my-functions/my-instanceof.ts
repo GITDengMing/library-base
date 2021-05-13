@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 export default function myInstanceof (instance: Object, construtor:Function):boolean {
   if (instance === null) {
     return false
