@@ -1,64 +1,54 @@
-import babel from "@rollup/plugin-babel";
-import { terser } from "rollup-plugin-terser";
+import babel from '@rollup/plugin-babel'
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import pkg from './package.json'
+
+const extensions = [
+  '.js', '.jsx', '.ts', '.tsx'
+]
 
 export default [
   // CommonJS
   {
-    input: "src/index.js",
-    output: { file: "lib/form-system.js", format: "cjs", indent: false },
+    input: 'src/index.ts',
+    output: { file: pkg.main, format: 'cjs', indent: false },
     plugins: [
+      resolve({ extensions }),
+      commonjs(),
       babel({
-        plugins: ["@babel/plugin-transform-runtime"],
-        babelHelpers: "runtime",
-      }),
-    ],
+        extensions,
+        plugins: ['@babel/plugin-transform-runtime'],
+        babelHelpers: 'runtime'
+      })
+    ]
   },
 
   // ES
   {
-    input: "src/index.js",
-    output: { file: "es/form-system.js", format: "es", indent: false },
+    input: 'src/index.ts',
+    output: { file: pkg.module, format: 'es', indent: false },
     plugins: [
+      resolve({ extensions }),
       babel({
-        plugins: ["@babel/plugin-transform-runtime"],
-        babelHelpers: "runtime",
-      }),
-    ],
+        extensions,
+        plugins: ['@babel/plugin-transform-runtime'],
+        babelHelpers: 'runtime'
+      })
+    ]
   },
 
-  // ES for Browsers
+  // UMD
   {
-    input: "src/index.js",
+    input: 'src/index.ts',
     output: {
-      file: "es/form-system.mjs",
-      format: "es",
-      indent: false,
-      plugins: [terser()],
+      file: pkg.unpkg,
+      format: 'umd',
+      name: 'library-base',
+      indent: false
     },
-    plugins: [babel({ babelHelpers: "bundled", exclude: "node_modules/**" })],
-  },
-
-  // UMD Development
-  {
-    input: "src/index.js",
-    output: {
-      file: "dist/form-system.js",
-      format: "umd",
-      name: "form-system",
-      indent: false,
-    },
-    plugins: [babel({ babelHelpers: "bundled", exclude: "node_modules/**" })],
-  },
-  // UMD Production
-  {
-    input: "src/index.js",
-    output: {
-      file: "dist/form-system.min.js",
-      format: "umd",
-      name: "form-system",
-      indent: false,
-      plugins: [terser()],
-    },
-    plugins: [babel({ babelHelpers: "bundled", exclude: "node_modules/**" })],
-  },
-];
+    plugins: [
+      resolve({ extensions }),
+      babel({ extensions, babelHelpers: 'bundled', exclude: 'node_modules/**' })
+    ]
+  }
+]

@@ -10,6 +10,7 @@ module.exports = {
         loose: true,
       },
     ],
+    "@babel/typescript"
   ],
   plugins: [
     NODE_ENV === "test" && "@babel/plugin-transform-modules-commonjs",

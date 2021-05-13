@@ -1,13 +1,16 @@
 {
-  "name": "form-system",
+  "name": "library-base",
   "version": "1.0.0",
-  "description": "form system",
-  "main": "lib/form-system.js",
-  "unpkg": "dist/form-system.js",
-  "module": "es/form-system.js",
+  "description": "library-base",
+  "main": "lib/library-base.js",
+  "unpkg": "dist/library-base.js",
+  "module": "es/library-base.js",
+  "types": "types/index.d.ts",
   "scripts": {
-    "build": "rollup --config",
-    "lint": "eslint src test --fix",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "rollup -c",
+    "build": "npm run build:types && npm run build:js",
+    "lint": "eslint src --fix",
     "test": "jest"
   },
   "keywords": [
@@ -22,7 +25,12 @@
     "@babel/plugin-transform-modules-commonjs": "^7.13.8",
     "@babel/plugin-transform-runtime": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
+    "@babel/preset-typescript": "^7.13.0",
     "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
     "babel-jest": "^26.6.3",
     "eslint": "^7.24.0",
     "eslint-config-standard": "^16.0.2",
@@ -31,7 +39,8 @@
     "eslint-plugin-promise": "^4.3.1",
     "jest": "^26.6.3",
     "rollup": "^2.45.2",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.2.4"
   },
   "dependencies": {}
 }
